@@ -1,0 +1,29 @@
+import 'lib/services/encryption_service.dart';
+
+void main() async {
+  print('Testing Emn178 Encryption Format...');
+  print(await Emn178Encryption.testEncryptionFormat());
+  
+  // Test with fixed salt for reproducible results
+  print('\nFixed salt test (reproducible):');
+  const testText = "cat";
+  const testPassword = "password";
+  
+  // Use a fixed salt for reproducible testing
+  final salt = [0x12, 0x34, 0x56, 0x78, 0x9A, 0xBC, 0xDE, 0xF0];
+  
+  try {
+    // Derive key and IV - but we need to test this through the public encrypt method
+    final encrypted = await Emn178Encryption.encrypt(testText, testPassword);
+    print('Random salt test: "$testText" -> $encrypted');
+    
+    // Test multiple times to show different salts
+    print('\nMultiple tests (different salts):');
+    for (int i = 0; i < 3; i++) {
+      final encrypted = await Emn178Encryption.encrypt("cat", "password");
+      print('Test ${i + 1}: $encrypted');
+    }
+  } catch (e) {
+    print('Test failed: $e');
+  }
+}
