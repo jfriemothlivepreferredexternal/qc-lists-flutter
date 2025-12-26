@@ -724,12 +724,13 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: ElevatedButton.icon(
                           onPressed: () => _goToNewChecklist(context),
                           icon: const Icon(Icons.add_circle_outline, size: 24),
-                          label: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text('New', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                              Text('Checklist', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                            ],
+                          label: FittedBox(
+                            fit: BoxFit.scaleDown,
+                            child: Text(
+                              'New List',
+                              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                              textScaler: TextScaler.linear(1.0),
+                            ),
                           ),
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.orange.shade400,
@@ -748,12 +749,13 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: ElevatedButton.icon(
                           onPressed: () => _goToSavedChecklists(context),
                           icon: const Icon(Icons.list_alt, size: 24),
-                          label: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text('Saved', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                              Text('Lists', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                            ],
+                          label: FittedBox(
+                            fit: BoxFit.scaleDown,
+                            child: Text(
+                              'Saved Lists',
+                              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                              textScaler: TextScaler.linear(1.0),
+                            ),
                           ),
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.orange.shade400,
@@ -777,12 +779,13 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: ElevatedButton.icon(
                           onPressed: () => _goToSubLists(context),
                           icon: const Icon(Icons.people, size: 24),
-                          label: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text('Sub', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                              Text('Lists', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                            ],
+                          label: FittedBox(
+                            fit: BoxFit.scaleDown,
+                            child: Text(
+                              'Sub Lists',
+                              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                              textScaler: TextScaler.linear(1.0),
+                            ),
                           ),
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.blue.shade400,
@@ -801,12 +804,13 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: ElevatedButton.icon(
                           onPressed: () => _goToIssuesByUnit(context),
                           icon: const Icon(Icons.view_list, size: 24),
-                          label: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text('Issues by', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                              Text('Unit', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                            ],
+                          label: FittedBox(
+                            fit: BoxFit.scaleDown,
+                            child: Text(
+                              'Issues by Unit',
+                              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                              textScaler: TextScaler.linear(1.0),
+                            ),
                           ),
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.blue.shade400,

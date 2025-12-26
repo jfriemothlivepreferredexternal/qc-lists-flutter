@@ -1,0 +1,134 @@
+[ Kitchen ] Run ovens in whole tower to burn out the smell (don’t forget to turn them off)
+[ Far closet ] Ceiling : vents, lights, sprinklers
+[ Far closet ] Floor : (lvt gaps/buckling)
+[ Far closet ] Outlets/switches : level, screws
+[ Far closet ] Shelving : damages
+[ Far closet ] (Sliding doors) : guide installed
+[ Far closet ] Door : (hinges/screws)
+[ Far closet ] Door : (not ghosting)
+[ Far closet ] Door : (door stop, strike)
+[ Far bathroom ] Ceiling : vents, lights, sprinklers
+[ Far bathroom ] floor : (lvt gaps/buckling)
+[ Far bathroom ] Toilet : working, bolt caps
+[ Far bathroom ] Tp/towel holder : level, anchored
+[ Far bathroom ] Vanity light : level, cracks, bulbs
+[ Far bathroom ] Mirror : level, damages
+[ Far bathroom ] Sink : hot water, stopper
+[ Far bathroom ] Vanity top : damages
+[ Far bathroom ] Vanity cabinet : major damages
+[ Far bathroom ] Tub/shower : (door opens easily)
+[ Far bathroom ] Tub/shower : (curtain rod)
+[ Far bathroom ] Tub/shower : hardware, water works
+[ Far bathroom ] Tub/shower : damages
+[ Far bathroom ] Fan : level, not loud
+[ Far bathroom ] Outlets/switches : level, screws
+[ Far bathroom ] Door : hinges/screws
+[ Far bathroom ] Door : not ghosting
+[ Far bathroom ] Door : door stop, strike 
+[ Far bedroom ] Ceiling : vents, lights, sprinklers
+[ Far bedroom ] Floor : (lvt gaps/buckling)
+[ Far bedroom ] Outlets/switches : level, screws
+[ Far bedroom ] Windows : cracks, screens
+[ Far bedroom ] Windows : hardware, opens, lockable
+[ Far bedroom ] Blinds : valance, working
+[ Far bedroom ] Light : cracks, bulbs
+[ Far bedroom ] Door : hinges/screws
+[ Far bedroom ] Door : not ghosting
+[ Far bedroom ] Door : door stop, strike
+[ Living room ] Ceiling : vents, lights, sprinklers
+[ Living room ] Floor : (lvt gaps/buckling)
+[ Living room ] Outlets/switches : level, screws
+[ Living room ] Windows : cracks, screens
+[ Living room ] Windows : hardware, opens, lockable
+[ Living room ] Blinds : valance, working
+[ Living room ] (Glass sliding doors) : cracks, screens, lockable
+[ Living room ] Thermostat : working
+[ Living room ] (Plumbing cleanouts) : installed
+[ Kitchen ] Ceiling : vents, lights, sprinklers
+[ Kitchen ] Floor : lvt gaps, buckling
+[ Kitchen ] Outlets/switches : level, screws
+[ Kitchen ] Backsplash : cracks, missing grout
+[ Kitchen ] Island lights : cracks, bulbs
+[ Kitchen ] Dining lights : bulbs
+[ Kitchen ] Counter tops : damages, siliconed on 
+[ Kitchen ] Sink : both waters
+[ Kitchen ] Sink : hose goes back up
+[ Kitchen ] Disposal : working
+[ Kitchen ] Dishwasher : damages
+[ Kitchen ] Dishwasher : no leaks/errors
+[ Kitchen ] Microwave : damages, working
+[ Kitchen ] Oven : damages, scratches
+[ Kitchen ] Oven : plugged in, pushed back
+[ Kitchen ] Fridge : damages
+[ Kitchen ] Fridge : water/ice works
+[ Kitchen ] Cabinets : major damages
+[ Kitchen ] Cabinets : shelves, door swings
+[ Kitchen ] Cabinets : toe kicks
+[ Kitchen ] Pantry : shelves, floor/ceiling
+[ Kitchen ] Pantry : door 
+[ Laundry room ] Ceiling : (vents, lights, sprinklers)
+[ Laundry room ] Floor : lvt gaps, buckling
+[ Laundry room ] Outlets/switches : level, screws
+[ Laundry room ] Shelving : damages
+[ Laundry room ] Washer : damages
+[ Laundry room ] Washer : leaks/errors
+[ Laundry room ] Dryer : damages
+[ Laundry room ] Dryer : heat works
+[ Laundry room ] Door(s) : (Strike(s), ball catches)
+[ Electric panel ] Breakers : on
+[ Electric panel ] Latch : not stuck closed
+[ Electric panel ] Screws : installed 
+[ Patio/balcony ] Door: hardware
+[ Patio/balcony ] Light : bulb
+[ Patio/balcony ] Siding : damages
+[ Furnace room ] Furnace : Filter clean
+[ Furnace room ] Furnace : Not frozen or leaking
+[ Furnace room ] Furnace : Condensation pipes feed directly into floor drain
+
+[ Furnace room ] Door : hinges/screws
+[ Furnace room ] Door : not ghosting
+[ Furnace room ] Door : door stop, strike
+[ Hallway ] Ceiling : vents, lights, sprinklers
+[ Hallway ] Floor : lvt gaps, buckling
+[ Hallway ] Entry door : door viewer
+[ Hallway ] Entry door : no threshold gap
+[ Hallway ] Entry door : weatherstrip
+[ Hallway ] Coat closet
+[ ] (ALL ARE N/A BELOW FOR 1 BED UNITS) :
+[ Close bed closet ] Ceiling : vents, lights, sprinklers
+[ Close bed closet ] Floor : (lvt gaps/buckling)
+[ Close bed closet ] Outlets/switches : level, screws
+[ Close bed closet ] Shelving : damages
+[ Close bed closet ] (Sliding doors) : guide installed
+[ Close bed closet ] Door : (hinges/screws)
+[ Close bed closet ] Door : (not ghosting)
+[ Close bed closet ] Door : (door stop, strike)
+[ Close bathroom ] Ceiling : vents, lights, sprinklers
+[ Close bathroom ] floor : (lvt gaps/buckling)
+[ Close bathroom ] Toilet : working, bolt caps
+[ Close bathroom ] Tp/towel holder : level, anchored
+[ Close bathroom ] Vanity light : level, cracks, bulbs
+[ Close bathroom ] Mirror : level, damages
+[ Close bathroom ] Sink : hot water, stopper
+[ Close bathroom ] Vanity top : damages
+[ Close bathroom ] Vanity cabinet : major damages
+[ Close bathroom ] Tub/shower : (door opens easily)
+[ Close bathroom ] Tub/shower : (curtain rod)
+[ Close bathroom ] Tub/shower : hardware, water works
+[ Close bathroom ] Tub/shower : damages
+[ Close bathroom ] Fan : level, not loud
+[ Close bathroom ] Outlets/switches : level, screws
+[ Close bathroom ] Door : hinges/screws
+[ Close bathroom ] Door : not ghosting
+[ Close bathroom ] Door : door stop, strike
+[ Close bedroom ] Ceiling : vents, lights, sprinklers
+[ Close bedroom ] Floor : (lvt gaps/buckling)
+[ Close bedroom ] Outlets/switches : level, screws
+[ Close bedroom ] Windows : cracks, screens
+[ Close bedroom ] Windows : hardware, opens, lockable
+[ Close bedroom ] Blinds : valance, working
+[ Close bedroom ] Light : cracks, bulbs
+[ Close bedroom ] Door : hinges/screws
+[ Close bedroom ] Door : not ghosting
+[ Close bedroom ] Door : door stop, strike
+(extra item)

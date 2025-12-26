@@ -1,23 +1,10 @@
 import 'dart:io';
 import 'dart:convert';
+import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
 import '../models/checklist_models.dart';
 
 class StorageService {
-  // Default QC templates
-  static const Map<String, List<String>> _defaultTemplates = {
-    'QC1': ['Item One', 'Item Two', 'Item Three'],
-    'QC2': ['Item One', 'Item Two', 'Item Three'],
-    'QC3.A': ['Item One', 'Item Two', 'Item Three'],
-    'QC3.B': ['Item One', 'Item Two', 'Item Three'],
-    'QC3.C': ['Item One', 'Item Two', 'Item Three'],
-    'QC4.A': ['Item One', 'Item Two', 'Item Three'],
-    'QC4.B': ['Item One', 'Item Two', 'Item Three'],
-    'QC5.A': ['Item One', 'Item Two', 'Item Three'],
-    'QC6': ['Item One', 'Item Two', 'Item Three'],
-    'QC6.ALT': ['Item One', 'Item Two', 'Item Three'],
-  };
-
   // Template names mapping
   static const Map<String, String> _templateNames = {
     'QC1': 'QC1 Foundation',
@@ -32,6 +19,27 @@ class StorageService {
     'QC6.ALT': 'QC6 Alternative Final',
   };
 
+  // Load template items from text files
+  static Future<Map<String, List<String>>> _loadDefaultTemplates() async {
+    final Map<String, List<String>> templates = {};
+    
+    for (final templateId in _templateNames.keys) {
+      try {
+        final content = await rootBundle.loadString('qc_templates/$templateId.txt');
+        final items = content.split('\n')
+            .map((line) => line.trim())
+            .where((line) => line.isNotEmpty)
+            .toList();
+        templates[templateId] = items;
+      } catch (e) {
+        // Fallback to generic items if file doesn't exist or can't be loaded
+        templates[templateId] = ['Item One', 'Item Two', 'Item Three'];
+      }
+    }
+    
+    return templates;
+  }
+
   static Future<String> get _localPath async {
     final directory = await getApplicationDocumentsDirectory();
     return directory.path;
@@ -41,12 +49,14 @@ class StorageService {
   static Future<Map<String, QCTemplate>> loadTemplates() async {
     try {
       final savedTemplates = await _getSavedTemplates();
+      final defaultTemplates = await _loadDefaultTemplates();
+      
       if (savedTemplates.isNotEmpty) {
         final savedTemplateMap = {for (var template in savedTemplates) template.id: template};
         
         // Check if any default templates are missing and add them
         bool updated = false;
-        for (var entry in _defaultTemplates.entries) {
+        for (var entry in defaultTemplates.entries) {
           if (!savedTemplateMap.containsKey(entry.key)) {
             savedTemplateMap[entry.key] = QCTemplate(
               id: entry.key,
@@ -66,7 +76,7 @@ class StorageService {
       } else {
         // Initialize with default templates
         final defaultTemplateMap = {
-          for (var entry in _defaultTemplates.entries)
+          for (var entry in defaultTemplates.entries)
             entry.key: QCTemplate(
               id: entry.key,
               name: _templateNames[entry.key]!,
@@ -77,9 +87,10 @@ class StorageService {
         return defaultTemplateMap;
       }
     } catch (e) {
-      // Return default templates if loading fails
+      // Return fallback templates if loading fails
+      final fallbackTemplates = await _loadDefaultTemplates();
       return {
-        for (var entry in _defaultTemplates.entries)
+        for (var entry in fallbackTemplates.entries)
           entry.key: QCTemplate(
             id: entry.key,
             name: _templateNames[entry.key]!,
