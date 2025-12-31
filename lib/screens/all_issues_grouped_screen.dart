@@ -5,6 +5,7 @@ import '../services/storage_service.dart';
 import '../services/subcontractor_issue_service.dart';
 import '../services/property_filter.dart';
 import '../widgets/issue_card.dart';
+import '../widgets/issues_building_card.dart';
 import '../utils/tower_utils.dart';
 import 'issue_detail_screen.dart';
 import 'template_selection_screen.dart';
@@ -378,125 +379,26 @@ class _AllIssuesGroupedScreenState extends State<AllIssuesGroupedScreen> with Wi
                   controller: _scrollController,
                   itemCount: sortedBuildingNumbers.length,
                   itemBuilder: (context, buildingIndex) {
-          final buildingNumber = sortedBuildingNumbers[buildingIndex];
-          final buildingIssues = _issuesByBuilding[buildingNumber]!;
-          
-          // Separate unresolved and resolved issues
-          final unresolvedIssues = buildingIssues.where((issue) => !issue.isResolved).toList();
-          final resolvedIssues = buildingIssues.where((issue) => issue.isResolved).toList();
-          
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Building header
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16.0),
-                child: Row(
-                  children: [
-                    Text(
-                      'Building $buildingNumber',
-                      style: const TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.blue,
-                      ),
-                    ),
-                    const SizedBox(width: 16),
-                    Text(
-                      '${buildingIssues.length} issues',
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.blue.shade700,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              
-              // Unresolved issues section
-              if (unresolvedIssues.isNotEmpty) ...[
-                const Padding(
-                  padding: EdgeInsets.only(bottom: 8.0),
-                  child: Text(
-                    'Unresolved Issues',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.red,
-                    ),
-                  ),
-                ),
-                ...unresolvedIssues.map((issue) => Padding(
-                  padding: const EdgeInsets.only(bottom: 8.0),
-                  child: IssueCard(
-                    issue: issue,
-                    isResolved: issue.isResolved,
-                    onToggle: () => _toggleIssueResolution(issue),
-                    getTemplateName: _getTemplateName,
-                    onTap: () => _navigateToIssueDetail(issue),
-                  ),
-                )),
-                const SizedBox(height: 16),
-              ],
-              
-              // Resolved issues section - collapsible
-              if (resolvedIssues.isNotEmpty) ...[
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 8.0),
-                  child: Row(
-                    children: [
-                      const Text(
-                        'Resolved Issues',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.green,
-                        ),
-                      ),
-                      const SizedBox(width: 8),
-                      TextButton.icon(
-                        onPressed: () => _toggleResolvedSection(buildingNumber),
-                        icon: Icon(
-                          (_collapsedResolvedSections[buildingNumber] ?? true) ? Icons.expand_more : Icons.expand_less,
-                          size: 16,
-                          color: Colors.green.shade700,
-                        ),
-                        label: Text(
-                          '${resolvedIssues.length} resolved',
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.green.shade700,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                // Only show resolved issues if not collapsed
-                if (!(_collapsedResolvedSections[buildingNumber] ?? true))
-                  ...resolvedIssues.map((issue) => Padding(
-                    padding: const EdgeInsets.only(bottom: 8.0),
-                    child: IssueCard(
-                      issue: issue,
-                      isResolved: issue.isResolved,
-                      onToggle: () => _toggleIssueResolution(issue),
+                    final buildingNumber = sortedBuildingNumbers[buildingIndex];
+                    final buildingIssues = _issuesByBuilding[buildingNumber]!;
+                    
+                    // Separate unresolved and resolved issues
+                    final unresolvedIssues = buildingIssues.where((issue) => !issue.isResolved).toList();
+                    final resolvedIssues = buildingIssues.where((issue) => issue.isResolved).toList();
+                    
+                    return IssuesBuildingCard(
+                      buildingNumber: buildingNumber,
+                      unresolvedIssues: unresolvedIssues,
+                      resolvedIssues: resolvedIssues,
+                      onToggleUnresolved: _toggleIssueResolution,
+                      onToggleResolved: _toggleIssueResolution,
                       getTemplateName: _getTemplateName,
-                      onTap: () => _navigateToIssueDetail(issue),
-                    ),
-                  )),
-              ],
-              
-              // Add divider between buildings (except for the last one)
-              if (buildingIndex < sortedBuildingNumbers.length - 1)
-                const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 24.0),
-                  child: Divider(thickness: 3),
-                ),
-            ],
-          );
-        },
+                      onCopyComplete: () => setState(() {}),
+                      onToggleResolvedSection: () => _toggleResolvedSection(buildingNumber),
+                      isResolvedSectionCollapsed: _collapsedResolvedSections[buildingNumber] ?? true,
+                      onIssueTap: _navigateToIssueDetail,
+                    );
+                  },
                 ),
               ),
             ),

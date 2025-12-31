@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:share_plus/share_plus.dart';
 import 'template_selection_screen.dart';
 import 'saved_checklists_screen.dart';
 import 'template_edit_screen.dart';
@@ -30,6 +32,11 @@ class _HomeScreenState extends State<HomeScreen> {
   Future<void> _checkPropertyPopup() async {
     // Load saved property first
     await PropertyFilter.loadProperty();
+    
+    // Update UI to reflect loaded property
+    if (mounted) {
+      setState(() {});
+    }
     
     // Check if we should show popup (daily or when no property selected)
     final shouldShowDaily = await PropertyFilter.shouldShowDailyPopup();
@@ -416,6 +423,13 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  Future<void> _shareCloudDatabaseLink() async {
+    const String url = 'https://docs.google.com/spreadsheets/d/1OnodEciukIX-grhcXIZG6sM5haRt0QnQJWBVv2ThuGg/edit?usp=sharing';
+    const String message = 'Here is the link to the QC Lists Cloud Database:\n\n$url';
+    
+    await Share.share(message, subject: 'QC Lists Cloud Database Link');
+  }
+
   void _editTemplates() async {
     // Show password dialog first
     final passwordController = TextEditingController();
@@ -565,70 +579,80 @@ class _HomeScreenState extends State<HomeScreen> {
       context: context,
       builder: (context) => Container(
         padding: const EdgeInsets.all(16),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            ListTile(
-              leading: const Icon(Icons.add_circle_outline),
-              title: const Text('New Checklist'),
-              onTap: () {
-                Navigator.pop(context);
-                _goToNewChecklist(context);
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.list_alt),
-              title: const Text('View Saved Checklists'),
-              onTap: () {
-                Navigator.pop(context);
-                _goToSavedChecklists(context);
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.people),
-              title: const Text('Sub Lists'),
-              onTap: () {
-                Navigator.pop(context);
-                _goToSubLists(context);
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.view_list),
-              title: const Text('Issues by Unit'),
-              onTap: () {
-                Navigator.pop(context);
-                _goToIssuesByUnit(context);
-              },
-            ),
-            const Divider(),
-            // ListTile(
-            //   leading: const Icon(Icons.assignment_late),
-            //   title: const Text('Issues Dashboard'),
-            //   onTap: () {
-            //     Navigator.pop(context);
-            //     Navigator.push(
-            //       context,
-            //       MaterialPageRoute(builder: (context) => const IssuesDashboardScreen()),
-            //     );
-            //   },
-            // ),
-            ListTile(
-              leading: const Icon(Icons.edit),
-              title: const Text('Edit Templates'),
-              onTap: () {
-                Navigator.pop(context);
-                _editTemplates();
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.info_outline),
-              title: const Text('About'),
-              onTap: () {
-                Navigator.pop(context);
-                _showAbout(context);
-              },
-            ),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ListTile(
+                leading: const Icon(Icons.add_circle_outline),
+                title: const Text('New Checklist'),
+                onTap: () {
+                  Navigator.pop(context);
+                  _goToNewChecklist(context);
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.list_alt),
+                title: const Text('View Saved Checklists'),
+                onTap: () {
+                  Navigator.pop(context);
+                  _goToSavedChecklists(context);
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.people),
+                title: const Text('Issues by Sub'),
+                onTap: () {
+                  Navigator.pop(context);
+                  _goToSubLists(context);
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.view_list),
+                title: const Text('Issues by Bldg'),
+                onTap: () {
+                  Navigator.pop(context);
+                  _goToIssuesByUnit(context);
+                },
+              ),
+              const Divider(),
+              ListTile(
+                leading: const Icon(Icons.share),
+                title: const Text('Get link to cloud database'),
+                onTap: () {
+                  Navigator.pop(context);
+                  _shareCloudDatabaseLink();
+                },
+              ),
+              // ListTile(
+              //   leading: const Icon(Icons.assignment_late),
+              //   title: const Text('Issues Dashboard'),
+              //   onTap: () {
+              //     Navigator.pop(context);
+              //     Navigator.push(
+              //       context,
+              //       MaterialPageRoute(builder: (context) => const IssuesDashboardScreen()),
+              //     );
+              //   },
+              // ),
+              ListTile(
+                leading: const Icon(Icons.edit),
+                title: const Text('Edit Templates'),
+                onTap: () {
+                  Navigator.pop(context);
+                  _editTemplates();
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.info_outline),
+                title: const Text('About'),
+                onTap: () {
+                  Navigator.pop(context);
+                  _showAbout(context);
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -782,7 +806,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           label: FittedBox(
                             fit: BoxFit.scaleDown,
                             child: Text(
-                              'Sub Lists',
+                              'Issues by Sub',
                               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                               textScaler: TextScaler.linear(1.0),
                             ),
@@ -807,7 +831,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           label: FittedBox(
                             fit: BoxFit.scaleDown,
                             child: Text(
-                              'Issues by Unit',
+                              'Issues by Bldg',
                               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                               textScaler: TextScaler.linear(1.0),
                             ),
