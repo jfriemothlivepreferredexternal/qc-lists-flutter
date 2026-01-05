@@ -555,8 +555,22 @@ class _HomeScreenState extends State<HomeScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(
-                'This app does not sync QC data between users. Each user maintains their own local copy of checklists and will generally be responsible for certain QC lists as determined by the superintendent.\n\nIn case a user wants to see which lists have already been completed by others, all lists are sent to a website which will be accessible soon.\n\nNot having anything synced between app users helps simplify data alignment when lists are being made in areas where internet connectivity is limited.',
+                'This app does not sync QC data between users. Each user\'s app maintains its own local copy of checklists. Each user will generally be responsible for certain QC lists as determined by the superintendent.\n\nWhen a QC list is completed, users press the blue "Email Report" button to email a snapshot of their list to a website. Press the button below to email yourself a link to this website (it is better to view on a computer).\n\nAny issues noted in QC lists are automatically stored into the "Issues by Sub" and "Issues by Bldg" sections, which can be accessed from the home screen. Users may optionally copy lists from these sections and paste them into text, email, email for printing, etc.',
                 style: TextStyle(fontSize: 14, height: 1.4),
+              ),
+              const SizedBox(height: 20),
+              Center(
+                child: ElevatedButton.icon(
+                  onPressed: () {
+                    _shareCloudDatabaseLink();
+                  },
+                  icon: const Icon(Icons.share),
+                  label: const Text('Get Cloud Database Link'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blue.shade100,
+                    foregroundColor: Colors.blue.shade900,
+                  ),
+                ),
               ),
             ],
           ),

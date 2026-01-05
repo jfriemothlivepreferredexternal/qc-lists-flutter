@@ -8,6 +8,7 @@ import '../screens/issue_detail_screen.dart';
 import '../screens/template_selection_screen.dart';
 import '../screens/checklist_screen.dart';
 import '../services/storage_service.dart';
+import '../services/property_filter.dart';
 
 class SubcontractorDetailScreen extends StatefulWidget {
   final String subcontractorName;
@@ -105,7 +106,8 @@ class _SubcontractorDetailScreenState extends State<SubcontractorDetailScreen> {
     final existingChecklist = existingChecklists.where((checklist) =>
       checklist.buildingNumber == selectedBuilding &&
       checklist.unitNumber == selectedUnit &&
-      checklist.templateId == templateId
+      checklist.templateId == templateId &&
+      checklist.property == (PropertyFilter.selectedProperty ?? 'Alamira')
     ).firstOrNull;
     
     if (existingChecklist != null && mounted) {
@@ -132,6 +134,7 @@ class _SubcontractorDetailScreenState extends State<SubcontractorDetailScreen> {
         templateId: templateId,
         buildingNumber: selectedBuilding,
         unitNumber: selectedUnit,
+        property: PropertyFilter.selectedProperty ?? 'Alamira',
         items: template.items.map((item) => ChecklistItem(text: item)).toList(),
       );
       

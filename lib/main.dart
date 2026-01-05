@@ -8,7 +8,7 @@ class AppConfig {
   // - Change this to a secure password for your organization
   // - Share this password only with authorized personnel who need to decrypt reports
   // - After changing, rebuild the app with: flutter build apk --release
-  static const String encryptionPassword = 'tiger-banana-river-almost-magnet-skydive';
+  static const String encryptionPassword = 'tree-copier-horse-battery'; // Example password, change as needed
 }
 
 void main() {

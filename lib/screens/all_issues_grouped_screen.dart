@@ -216,7 +216,8 @@ class _AllIssuesGroupedScreenState extends State<AllIssuesGroupedScreen> with Wi
     final existingChecklist = existingChecklists.where((checklist) =>
       checklist.buildingNumber == selectedBuilding &&
       checklist.unitNumber == selectedUnit &&
-      checklist.templateId == templateId
+      checklist.templateId == templateId &&
+      checklist.property == (PropertyFilter.selectedProperty ?? 'Alamira')
     ).firstOrNull;
     
     if (existingChecklist != null && mounted) {
@@ -243,6 +244,7 @@ class _AllIssuesGroupedScreenState extends State<AllIssuesGroupedScreen> with Wi
         templateId: templateId,
         buildingNumber: selectedBuilding,
         unitNumber: selectedUnit,
+        property: PropertyFilter.selectedProperty ?? 'Alamira',
         items: template.items.map((item) => ChecklistItem(text: item)).toList(),
       );
       
